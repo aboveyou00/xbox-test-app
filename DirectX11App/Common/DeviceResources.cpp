@@ -23,9 +23,9 @@ namespace DisplayMetrics
     // The default thresholds that define a "high resolution" display. If the thresholds
     // are exceeded and SupportHighResolutions is false, the dimensions will be scaled
     // by 50%.
-    static const float DpiThreshold = 192.0f;		// 200% of standard desktop display.
-    static const float WidthThreshold = 1920.0f;	// 1080p width.
-    static const float HeightThreshold = 1080.0f;	// 1080p height.
+    static const float DpiThreshold = 192.0f; // 200% of standard desktop display.
+    static const float WidthThreshold = 1920.0f; // 1080p width.
+    static const float HeightThreshold = 1080.0f; // 1080p height.
 };
 
 // Constants used to calculate screen rotations
@@ -160,16 +160,16 @@ void DX::DeviceResources::CreateDeviceResources()
     ComPtr<ID3D11DeviceContext> context;
 
     HRESULT hr = D3D11CreateDevice(
-        nullptr,					// Specify nullptr to use the default adapter.
-        D3D_DRIVER_TYPE_HARDWARE,	// Create a device using the hardware graphics driver.
-        0,							// Should be 0 unless the driver is D3D_DRIVER_TYPE_SOFTWARE.
-        creationFlags,				// Set debug and Direct2D compatibility flags.
-        featureLevels,				// List of feature levels this app can support.
-        ARRAYSIZE(featureLevels),	// Size of the list above.
-        D3D11_SDK_VERSION,			// Always set this to D3D11_SDK_VERSION for Windows Store apps.
-        &device,					// Returns the Direct3D device created.
-        &m_d3dFeatureLevel,			// Returns feature level of device created.
-        &context					// Returns the device immediate context.
+        nullptr,                    // Specify nullptr to use the default adapter.
+        D3D_DRIVER_TYPE_HARDWARE,   // Create a device using the hardware graphics driver.
+        0,                          // Should be 0 unless the driver is D3D_DRIVER_TYPE_SOFTWARE.
+        creationFlags,              // Set debug and Direct2D compatibility flags.
+        featureLevels,              // List of feature levels this app can support.
+        ARRAYSIZE(featureLevels),   // Size of the list above.
+        D3D11_SDK_VERSION,          // Always set this to D3D11_SDK_VERSION for Windows Store apps.
+        &device,                    // Returns the Direct3D device created.
+        &m_d3dFeatureLevel,         // Returns feature level of device created.
+        &context                    // Returns the device immediate context.
     );
 
     if (FAILED(hr))
@@ -274,15 +274,15 @@ void DX::DeviceResources::CreateWindowSizeDependentResources()
         DXGI_SCALING scaling = DisplayMetrics::SupportHighResolutions ? DXGI_SCALING_NONE : DXGI_SCALING_STRETCH;
         DXGI_SWAP_CHAIN_DESC1 swapChainDesc = { 0 };
 
-        swapChainDesc.Width = lround(m_d3dRenderTargetSize.Width);		// Match the size of the window.
+        swapChainDesc.Width = lround(m_d3dRenderTargetSize.Width);      // Match the size of the window.
         swapChainDesc.Height = lround(m_d3dRenderTargetSize.Height);
-        swapChainDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;				// This is the most common swap chain format.
+        swapChainDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;              // This is the most common swap chain format.
         swapChainDesc.Stereo = false;
-        swapChainDesc.SampleDesc.Count = 1;								// Don't use multi-sampling.
+        swapChainDesc.SampleDesc.Count = 1;                             // Don't use multi-sampling.
         swapChainDesc.SampleDesc.Quality = 0;
         swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-        swapChainDesc.BufferCount = 2;									// Use double-buffering to minimize latency.
-        swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;	// All Windows Store apps must use this SwapEffect.
+        swapChainDesc.BufferCount = 2;                                  // Use double-buffering to minimize latency.
+        swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;    // All Windows Store apps must use this SwapEffect.
         swapChainDesc.Flags = 0;
         swapChainDesc.Scaling = scaling;
         swapChainDesc.AlphaMode = DXGI_ALPHA_MODE_IGNORE;

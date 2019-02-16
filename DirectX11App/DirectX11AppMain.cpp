@@ -15,7 +15,7 @@ DirectX11AppMain::DirectX11AppMain(const std::shared_ptr<DX::DeviceResources>& d
     m_deviceResources->RegisterDeviceNotify(this);
 
     // TODO: Replace this with your app's content initialization.
-    m_sceneRenderer = std::unique_ptr<Sample3DSceneRenderer>(new Sample3DSceneRenderer(m_deviceResources));
+    m_sceneRenderer = std::unique_ptr<PlaySceneRenderer>(new PlaySceneRenderer(m_deviceResources));
 
     m_fpsTextRenderer = std::unique_ptr<SampleFpsTextRenderer>(new SampleFpsTextRenderer(m_deviceResources));
 
@@ -73,7 +73,7 @@ bool DirectX11AppMain::Render()
     context->OMSetRenderTargets(1, targets, m_deviceResources->GetDepthStencilView());
 
     // Clear the back buffer and depth stencil view.
-    context->ClearRenderTargetView(m_deviceResources->GetBackBufferRenderTargetView(), DirectX::Colors::CornflowerBlue);
+    context->ClearRenderTargetView(m_deviceResources->GetBackBufferRenderTargetView(), DirectX::Colors::Black);
     context->ClearDepthStencilView(m_deviceResources->GetDepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
     // Render the scene objects.
